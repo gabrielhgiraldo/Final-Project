@@ -21,9 +21,9 @@ $robot->delay( $ROBOT_DELAY_IN_MINUTES);
 
 my @websites = ( "http://www.rock30games.com/ItemSearch--search-",
 	"http://www.gamestop.com/browse?nav=16k-3-", "http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR10.TRC0.A0.H0.Xcall+of+duty.TRS0&_nkw=");
-my @product_links;#=(["http://www.google.com","http://www.facebook.com"],["http://www.instagram.com","http://www.noodles.com"]);
-my @product_costs;#=(["\$300","\$40"],["\$3","\$2"]);
-my @product_names;#=(["womp","boop"],["schloop","schlop"]);
+my @product_links;
+my @product_costs;
+my @product_names;
 my $game;
 print header;
 print<<END;
