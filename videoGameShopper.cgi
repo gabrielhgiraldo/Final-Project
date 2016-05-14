@@ -173,7 +173,7 @@ sub grab_urls {
 				$product_links[$i][$index] = "http://www.gamestop.com".$link;
 			}
 			elsif($websites[$i] =~ /ebay/){
-				$product_links[$i][$index] = "http://www.ebay.com".$link;
+				$product_links[$i][$index] = $link;
 			}
 			else {
 				$product_links[$i][$index] = $link;
