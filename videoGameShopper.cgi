@@ -23,7 +23,7 @@ my $robot = new LWP::RobotUA $ROBOT_NAME, $ROBOT_MAIL;
 $robot->delay( $ROBOT_DELAY_IN_MINUTES);
 
 my @websites = ("http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dvideogames&field-keywords=
-", "http://www.gamestop.com/browse?nav=16k-3-", "Best Buy");
+", "http://www.gamestop.com/browse?nav=16k-3-", "http://www.bestbuy.com/site/searchpage.jsp?_dyncharset=UTF-8&_dynSessConf=&id=pcat17071&type=page&sc=Global&cp=1&nrp=15&sp=&qp=&list=n&iht=y&usc=All+Categories&ks=960&st=");
 my @product_links;#=(["http://www.google.com","http://www.facebook.com"],["http://www.instagram.com","http://www.noodles.com"]);
 my @product_costs;#=(["\$300","\$40"],["\$3","\$2"]);
 my @product_names;#=(["womp","boop"],["schloop","schlop"]);
@@ -141,7 +141,10 @@ sub search_websites{
 		if($websites[$i] =~/gamestop/){
 #			print $websites[$i].$keywords.",28zu0",br;
 			$request = new HTTP::Request HEAD => $websites[$i].$keywords.",28zu0";
-		}
+		} 
+        #if ($websites[$i] =~/bestbuy/) {
+        #    $request = new HTTP::Request HEAD => $websites[$i].$keywords;
+        #}
 		my $response = $robot -> request($request);
 #		print $response->code;
 		next if $response -> code != RC_OK;
@@ -206,17 +209,19 @@ sub extract_prices{
    	#my @costs = $content =~ m/ats-product-price/g;
    	my @costs = $content =~ /<p class="pricing ats-product-price">(.*)<\/p>/g;
    	my $j = 0;
-   	for my $cost(@costs) {
-   		my @costs = split /\$/, $cost;
-   	#	print $cost,br;
-   		if($costs[2]){
-  	 		$cost = $costs[2];
-   		} else {
-   			$cost = $costs[1];
-   		}
-   	#	print $cost,br;
-   		$product_costs[$i][$j] =$cost;
-		$j++;
-   	}
+    #if ($websites[$i] =~ /gamestop/) {
+       	for my $cost(@costs) {
+       		my @costs = split /\$/, $cost;
+       	#	print $cost,br;
+       		if($costs[2]){
+      	 		$cost = $costs[2];
+       		} else {
+       			$cost = $costs[1];
+       		}
+       	#	print $cost,br;
+       		$product_costs[$i][$j] =$cost;
+		    $j++;
+   	    }
+    #}
    
 }
