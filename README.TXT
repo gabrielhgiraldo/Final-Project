@@ -1,5 +1,5 @@
-Gabriel Giraldo-Wingler - ggirald1
 Joseph Paek - jpaek1
+Gabriel Giraldo-Wingler - ggirald1
 
 Video Game Metasearch Engine
 
@@ -16,6 +16,16 @@ protocol, but we're not sure how to go about fixing it. We also found the most s
 our GameStop search, with Ebay following closely behind and Rock30Games falling much
 farther back. We also had a bug in our configuration file implementation, so we ended up
 hardcoding the links into the program.
+
+We also ran one robot to crawl the three sites, definitely slowing down performance and
+accuracy to a certain extent. If we made a robot for each site, our speed probably would have
+improved. We also should have used a stronger vector-based model to find the titles of the
+queries and the prices in the closest vicinity of it. Perhaps we could have even gone into
+the title links and found the price that way in order to increase accuracy, rather than 
+finding all of the prices on the search results page and attempting to have them line up
+with its corresponding game title.
+
+
 
 
 How to Run:
